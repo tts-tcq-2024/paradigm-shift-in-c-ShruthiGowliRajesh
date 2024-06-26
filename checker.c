@@ -1,12 +1,20 @@
 #include <stdio.h>
 #include <assert.h>
 
-int batteryIsOk(float temperature, float soc, float chargeRate) {
-  if((temperature < 0 || temperature > 45) || (soc < 20 || soc > 80) ||chargeRate > 0.8) {
-    printf("Temperature/soc/charge rate out of range!\n");
-    return 0;
+bool batteryIsOk(float temperature, float soc, float chargeRate) {
+  if(temperature < 0 || temperature > 45) {
+    printf("Temperature out of range!\n");
+    return false;
   }
-  return 1;
+   if(soc < 20 || soc > 80)  {
+    printf("soc out of range!\n");
+    return false;
+  }
+   if(chargeRate > 0.8) {
+    printf("charge rate out of range!\n");
+    return false;
+  }
+  return true;
 }
 
 int main() {
